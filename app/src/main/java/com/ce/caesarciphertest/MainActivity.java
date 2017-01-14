@@ -24,17 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void findViews() {
-        mEtOffset = (EditText)findViewById( R.id.et_offset );
-        mEtOriginalText = (EditText)findViewById( R.id.et_original_text );
+        mEtOffset = (EditText) findViewById(R.id.et_offset);
+        mEtOriginalText = (EditText) findViewById(R.id.et_original_text);
         mBtnCaesarCipher = (Button) findViewById(R.id.btn_caesar_cipher);
-        mEtCipherText = (EditText)findViewById( R.id.et_cipher_text );
+        mEtCipherText = (EditText) findViewById(R.id.et_cipher_text);
 
-        mBtnCaesarCipher.setOnClickListener( this );
+        mBtnCaesarCipher.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if ( v == mBtnCaesarCipher ) {
+        if (v == mBtnCaesarCipher) {
             String _StrOffset = mEtOffset.getText().toString();
             int _Offset;
             if (!TextUtils.isEmpty(_StrOffset)) {
@@ -60,11 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StringBuilder _CipherText = new StringBuilder();
         char[] OriginallTextArr = pOriginalText.toCharArray();
         for (int i = 0; i < OriginallTextArr.length; i++) {
-            if (OriginallTextArr[i] != '\n') {
-                int temp = OriginallTextArr[i] + pOffset;
-                char ciphertext=(char)temp;
-                _CipherText.append(ciphertext);
-            }
+            int temp = OriginallTextArr[i] + pOffset;
+            char ciphertext = (char) temp;
+            _CipherText.append(ciphertext);
         }
         return _CipherText.toString();
     }
