@@ -2,6 +2,7 @@ package com.ce.caesarciphertest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final static int MAX_OFFSET = Integer.MAX_VALUE - Character.MAX_VALUE;
     private EditText mEtOffset;
     private EditText mEtOriginalText;
     private Button mBtnCaesarCipher;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEtOriginalText = (EditText) findViewById(R.id.et_original_text);
         mBtnCaesarCipher = (Button) findViewById(R.id.btn_caesar_cipher);
         mEtCipherText = (EditText) findViewById(R.id.et_cipher_text);
+        mEtOffset.setFilters(new InputFilter[]{ new LimitInputFilter(0, MAX_OFFSET)});
 
         mBtnCaesarCipher.setOnClickListener(this);
     }
@@ -59,12 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static String caesarCipher(int pOffset, String pOriginalText) {
         StringBuilder _CipherText = new StringBuilder();
         char[] OriginallTextArr = pOriginalText.toCharArray();
-        for (int i = 0; i < OriginallTextArr.length; i++) {
-            int temp = OriginallTextArr[i] + pOffset;
+        for (char aOriginallTextArr : OriginallTextArr) {
+            int temp = aOriginallTextArr + pOffset;
             char ciphertext = (char) temp;
             _CipherText.append(ciphertext);
         }
         return _CipherText.toString();
     }
-
 }
